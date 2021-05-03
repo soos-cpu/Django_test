@@ -94,3 +94,8 @@ class DetailView(generic.DetailView):
 class ResultsView(generic.DetailView):
     model = Question
     template_name = 'myapps/results.html'
+
+
+def homepage(request):
+    return render(request, 'myapps/homepage.html',)
+
