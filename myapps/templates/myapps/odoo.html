@@ -1,0 +1,50 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'myapps/odoo.css' %}"/>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Odoo</title>
+    <style>
+        h1 {
+            text-align: center;
+            background-color: yellow;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<h1>
+    hello, i will write something on this page,about how i use odoo!
+</h1>
+<div class="py">
+    <p style="font-size: 22px"> "with_context"给当前环境env添加上下文 </p>
+    <p>e.g.: with_context(active_test=False),这将会为你的环境添加一个上下文active_test=False
+        ,如果你想使用它，你可以在env._context拿到。</p>
+    <p>上下文可以从动作里携带，一般我们在客户端动作(ir.act.client)和窗口动作(ir.act.windows)使用</p>
+    <div>
+        <p>
+            在窗口动作里我们可以直接从当前环境拿到上下文，self.env.context.get('active_test', False);
+        </p>
+        <p>
+            在客户端动作里 一般是在start入口里通过一个值来接受，最后append进qweb模版里使用
+        </p>
+        <div>
+            start: function () {
+                var context = self.__parentedParent.inner_action.action_descr.context;
+                this.$el.append(QWeb.render("xml template", {context: context})
+            }
+        </div>
+        <p>
+            此时我们就能在xml模板里使用context里面的值！
+        </p>
+    </div>
+</div>
+<div class="js"></div>
+</body>
+<footer>
+    <em>使用odoo(python的一个erp框架)至今已有 {{ days }} 天！</em>
+</footer>
+</html>

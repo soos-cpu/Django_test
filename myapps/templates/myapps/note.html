@@ -1,0 +1,26 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'myapps/note.css' %}"/>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>笔记</title>
+</head>
+<body>
+<h1 id="page-core">This is the soos's knowledge notes</h1>
+<div>
+    <ul>
+        <li><a href={% url 'myapps:note/odoo' %}>Odoo</a></li>
+        <li><a href="">Linux</a></li>
+        <li><a href="">Shell</a></li>
+        <li><a href="">Python</a></li>
+        <li><a href="">Golang</a></li>
+        <li><a href="">jQuery</a></li>
+        <li><a href="">CSS</a></li>
+        <li><a href="">postgresql</a></li>
+    </ul>
+</div>
+</body>
+</html>

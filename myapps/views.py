@@ -9,6 +9,8 @@ from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 from django.views import generic
 from django.utils import timezone
+import time
+import datetime
 
 
 def detail(request, question_id):
@@ -97,5 +99,15 @@ class ResultsView(generic.DetailView):
 
 
 def homepage(request):
-    return render(request, 'myapps/homepage.html',)
+    return render(request, 'myapps/homepage.html', )
 
+
+def note(request):
+    return render(request, 'myapps/note.html', )
+
+
+def odoo(request):
+    start_time = datetime.datetime(2020, 5, 20)
+    now_time = datetime.datetime.now()
+    days = (now_time - start_time).days
+    return render(request, 'myapps/odoo.html', {'days': days})

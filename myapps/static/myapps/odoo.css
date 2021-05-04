@@ -1,0 +1,17 @@
+p {
+    text‐indent: 25px;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+
+em {
+    text-align: right;
+}
+
+p {
+    text-indent: 1em;
+}
