@@ -1,0 +1,16 @@
+/*body {*/
+/*    text-align: center;*/
+/*}*/
+
+table {
+    margin: auto;
+    text-align: center;
+}
+
+#pages {
+    text-align: center;
+}
+
+.pagination > li {
+    list-style: none;
+}

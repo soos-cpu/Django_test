@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>北辰光顾里附近租房信息</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'myapps/haiju.css' %}"/>
+</head>
+<body>
+{% if update_flag %}
+    <a href="{% url 'myapps:update_ggl_house_info' %}">更新北辰光顾里附近租房信息</a>
+{% endif %}
+<div id="header-search-box">
+    <form role="search" method="get" id="searchform" action="{% url 'myapps:ggl_house_search' %}">
+        {% csrf_token %}
+        <input type="search" name="q" placeholder="价格小于输入，倒序" required>
+        <button type="submit">搜索<span class="ion-ios-search-strong"></span></button>
+    </form>
+</div>
+<table border="1" cellspacing="0" cellpadding="0">
+    <thead>
+    <tr>
+        <th>标题</th>
+        <th>规格</th>
+        <th>楼层</th>
+        <th>价格</th>
+        <th>描述</th>
+        <th>链接</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for name in haiju %}
+        <tr>
+            <td>{{ name.title }}</td>
+            <td>{{ name.gui_ge }}</td>
+            <td>{{ name.high }}</td>
+            <td>{{ name.price }}</td>
+            <td>{{ name.special }}</td>
+            <td><a href="{{ name.url }}">跳转界面</a></td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<div id="pages" class="text-center">
+    <nav>
+        <ul class="pagination">
+            <li class="step-links">
+                {% if haiju.has_previous %}
+                    <a class='active' href="?page={{ haiju.previous_page_number }}">上一页</a>
+                {% endif %}
+
+                <span class="current">
+                    Page {{ haiju.number }} of {{ haiju.paginator.num_pages }}</span>
+
+                {% if haiju.has_next %}
+                    <a class='active' href="?page={{ haiju.next_page_number }}">下一页</a>
+                {% endif %}
+            </li>
+        </ul>
+    </nav>
+</div>
+</body>
+</html>

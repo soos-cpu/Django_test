@@ -2,7 +2,7 @@
 
 
 from django.http import HttpResponse, HttpResponseRedirect
-from .models import Question, Choice
+from .models import Question, Choice, HaijuHouseInfo
 from django.template import loader
 from django.http import Http404
 from django.shortcuts import render, get_object_or_404
@@ -111,3 +111,52 @@ def odoo(request):
     now_time = datetime.datetime.now()
     days = (now_time - start_time).days
     return render(request, 'myapps/odoo.html', {'days': days})
+
+
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage, InvalidPage
+
+
+def ggl_house(request):
+    if str(request.user) == 'soos':
+        update_flag = True
+    search = request.GET.get('q', False)
+    if search:
+        haiju1 = HaijuHouseInfo.objects.filter(title__icontains=search)
+        haiju2 = HaijuHouseInfo.objects.filter(gui_ge__icontains="6室")
+        try:
+            price = float(search)
+            haiju3 = HaijuHouseInfo.objects.filter(price__lte=price).order_by('-price')
+            # haiju = haiju1 | haiju2 | haiju3
+            haiju = haiju3
+        except:
+            haiju = haiju1 | haiju2
+    else:
+        haiju = HaijuHouseInfo.objects.all()
+    paginator = Paginator(haiju, 25)
+    if request.method == "GET":
+        # 获取 url 后面的 page 参数的值, 首页不显示 page 参数, 默认值是 1
+        page = request.GET.get('page')
+        try:
+            haiju = paginator.page(page)
+        # todo: 注意捕获异常
+        except PageNotAnInteger:
+            # 如果请求的页数不是整数, 返回第一页。
+            haiju = paginator.page(1)
+        except InvalidPage:
+            # 如果请求的页数不存在, 重定向页面
+            return HttpResponse('找不到页面的内容')
+        except EmptyPage:
+            # 如果请求的页数不在合法的页数范围内，返回结果的最后一页。
+            haiju = paginator.page(paginator.num_pages)
+    return render(request, 'myapps/haiju_info.html', locals())
+
+
+def update_ggl_house_info(request):
+    from .haiju_spider import main
+    if str(request.user) == 'soos':
+        main()
+    return ggl_house(request)
+
+
+def ggl_house_search(request):
+    return ggl_house(request)

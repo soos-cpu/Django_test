@@ -12,4 +12,7 @@ urlpatterns = [
     path('<int:question_id>/vote/', views.vote, name='vote'),
     path('note', views.note, name='note'),
     path('odoo', views.odoo, name='note/odoo'),
+    path('ggl_house', views.ggl_house, name='ggl_house'),
+    path('update_ggl_house_info', views.update_ggl_house_info, name='update_ggl_house_info'),
+    path('ggl_house_search', views.ggl_house_search, name='ggl_house_search'),
 ]
