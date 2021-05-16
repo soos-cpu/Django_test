@@ -25,13 +25,10 @@ $(function () {
         }
     }
     let index = 1;
-    $('.item').each(function () {
-        console.log(1);
-    })
     setInterval(() => {
         $('.item').each(function () {
             $(this).css('transform', `rotateY(${(index%2)*180}deg)`)
         });
         index++;
-    }, 5000)
+    }, 5000);
 })

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>主页</title>
+    {#    <embed src="../../static/myapps/media/4090192531.mp3'" hidden="ture"/>#}
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'myapps/homepagestyle.css' %}"/>
     <script src="{% static 'myapps/js/jquery-3.6.0.js' %}"></script>
@@ -18,5 +19,7 @@
 
     </div>
 </div>
+<span style="font-size: 20px">来听一曲儿七里香～</span>
+<audio controls autoplay loop src="{% static 'myapps/media/qlx.flac' %}">来听一曲儿七里香～</audio>
 </body>
 </html>
