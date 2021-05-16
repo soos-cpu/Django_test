@@ -1,0 +1,47 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#catch {
+    /*height: 100vh;*/
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.container {
+    width: 640px;
+    height: 410px;
+    /*border: solid 1px #000;*/
+    position: relative;
+    padding: 0;
+    margin: 0;
+    /*display: none;*/
+}
+
+.item {
+    width: 64px;
+    height: 41px;
+    position: absolute;
+    transform-style: preserve-3d;
+}
+
+.item .zheng {
+    width: 100%;
+    height: 100%;
+    background-image: url("../images/夏至.jpeg");
+    background-size: 642px 410px;
+    position: absolute;
+}
+
+.item .fan {
+    width: 100%;
+    height: 100%;
+    background-image: url("../images/夏至c.jpeg");
+    background-size: 642px 410px;
+    position: absolute;
+    transform: rotateY(180deg);
+}
+
+¬
